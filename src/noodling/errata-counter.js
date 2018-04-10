@@ -20,7 +20,7 @@ const template = (
 );
 
 const User = {
-    name: 'Silly Willy',
+    name: 'James May',
     age: '28',
     location: 'japan'
 };
@@ -31,17 +31,37 @@ function getLocation(location) {
     }
 };
 
-const templateTwo = (
-    <div>
-        <h1>{User.name ? User.name:'Anonymous'}</h1>
-        {(User.age && User.age >= 18) && <p>Age: {User.age}</p>}
-        {getLocation(User.location)}
-     </div>	
-);
-    
+// class -> classname in JSX
+let count = 0;
+const addOne = () => {
+    count+=1;
+    renderCounterApp();
+};
+const minusOne = () => {
+    count -=1;
+    renderCounterApp();
+};
+const reset = () => {
+    count = 0;
+    renderCounterApp();
+};
+
 const appRoot = document.getElementById('app');
 const testRoot = document.getElementById('testApp');
 
-ReactDOM.render(template, appRoot);
-ReactDOM.render(templateTwo, testRoot);
+// ReactDOM.render(template, appRoot);
+// ReactDOM.render(templateTwo, testRoot);
 
+const renderCounterApp = () => {
+    const templateTwo = (
+        <div>
+            <h1>Count: {count}</h1>
+            <button onClick={addOne}>+1</button>
+            <button onClick={minusOne}>-1</button>
+            <button onClick={reset}>reset</button>
+        </div>	
+    );
+    ReactDOM.render(templateTwo, appRoot);
+};
+
+renderCounterApp();

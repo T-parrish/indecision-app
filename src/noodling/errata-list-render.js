@@ -64,7 +64,3 @@ const renderOptionApp = () => {
 };
 
 renderOptionApp();
-
-
-
-
