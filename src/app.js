@@ -15,16 +15,30 @@ class IndecisionApp extends React.Component {
         this.handleAddOption = this.handleAddOption.bind(this);
         this.handleDeleteOption = this.handleDeleteOption.bind(this);
         this.state = {
-            options: props.options
+            options: []
         };
     }
 
     componentDidMount() {
-        console.log('component mounted')
+        try {
+            const json = localStorage.getItem('options');
+            const options = JSON.parse(json);
+
+            if (options) {
+                this.setState(() => ({options}))
+            }
+        } catch (e) {
+            console.log(e)
+        }
     }
+
     componentDidUpdate(prevProps, prevState) {
-        console.log('component updated')
+        if (prevState.options.length !== this.state.options.length) {
+            const json = JSON.stringify(this.state.options);
+            localStorage.setItem('options', json);
+        }
     }
+    
     componentWillUnmount() {
         console.log('component unmounted')
     }
@@ -80,10 +94,6 @@ class IndecisionApp extends React.Component {
     }
 }
 
-IndecisionApp.defaultProps = {
-    options: []
-};
-
 // Stateless functional component
 // Faster than other types of components
 const Header = (props) => {
@@ -115,8 +125,8 @@ const Action = (props) => {
 const Options = (props) => {
     return (
         <div>
-            <button onClick={props.handleDeleteOptions}>BOOM</button>
-            <p>{props.options.length}</p>
+            <button onClick={props.handleDeleteOptions}>Remove All</button>
+            {props.options.length === 0 && <p>Please add an option to get started</p>}
             {
                 props.options.map((option) => 
                     <Option key={option} 
@@ -158,6 +168,10 @@ class AddOption extends React.Component {
         const err = this.props.handleAddOption(option);
 
         this.setState(() => ({err}))
+
+        if (!err) {
+            e.target.elements.option.value = '';
+        }
     }
 
     render() {
