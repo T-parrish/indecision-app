@@ -1,70 +1,112 @@
 console.log('app is running')
 
-// JSX -> Javascript XML
-// compile to vanilla JS with babel
 // babel src/app.js --out-file=public/scripts/app.js --presets=env,react
 // can run with --watch flag to output changes in realtime
 
-const datas = {
-    title: 'Indecision App',
-    subtitle: 'put your life in the hands of a computer',
-    options: []
-};
+class IndecisionApp extends React.Component {
+    render() {
+        const title = 'Dat app';
+        const subtitle = 'Put your life in the hands of a computer';
+        const options = ['loop', 'zoop'];
 
-const appRoot = document.getElementById('app');
+        return (
+            <div>
+                <Header title = {title} subtitle={subtitle}/>
+                <Action />
+                <Options options = {options}/>
+                <AddOption />
+            </div>
+        );
+    }
+}
 
-const onFormSubmit = (e) => {
-    e.preventDefault();
+class Header extends React.Component {
+    render() {
+        return (
+            <div>
+                <h1>{this.props.title}</h1>
+                <h2>{this.props.subtitle}</h2>
+            </div>
+        );
+    }
+}
 
-    console.log('form submitted');
-    const option = e.target.elements.option.value;
+class Action extends React.Component {
+    handlePick () {
+        alert('The british are coming!')
+    }
 
-    if (option) {
-        datas.options.push(option);
-        e.target.elements.option.value = '';
-        renderOptionApp();
-    };
-};
+    render() {
+        return (
+            <div>
+                <button onClick={this.handlePick}>what should I do</button>
+            </div>
+        );
+    }
+}
 
-const numbers = [55, 76, 97];
+class Options extends React.Component {
+    // bare minimum to override constructor function
+    // and ensure you have access to this.props
+    constructor(props) {
+        super(props);
+        // Ensures the context stays correct and is 
+        // only called once before the component renders
+        this.removeAll = this.removeAll.bind(this);
+    }
 
-const reset = () => {
-    datas.options = [];
-    renderOptionApp();
-};
+    removeAll () {
+        alert('trashing your options')
+    }
 
-const makeDecision = () => {
-    const randomNum = Math.floor(Math.random() * datas.options.length);
-    const option = datas.options[randomNum];
-    alert(option);
-};
-
-const renderOptionApp = () => {
-    const template = (
-        <div>
-            <h1>{datas.title}</h1>
-            {datas.subtitle && <p>{datas.subtitle}</p>}
-            <p>{datas.options.length > 0 ? 'Here are your options':'No options available'}</p>
-            <p>{datas.options.length}</p>
-            <button disabled={datas.options.length === 0} onClick={makeDecision}>Make Decision</button>
-            <button onClick={reset}>Reset</button>
-            <ol>
+    render() {
+        return (
+            <div>
+                <p>{this.props.options.length}</p>
                 {
-                    datas.options.map((option) => <li key={option}>{option}</li>)
+                    this.props.options.map((option) => <Option key={option} optionText={option} />)
                 }
-            </ol>
-            <form onSubmit={onFormSubmit}>
-                <input type="text" name="option"/>
-                <button>Add Option</button>
-            </form>
-        </div>
-    );  
-
-    ReactDOM.render(template, appRoot);
-};
-
-renderOptionApp();
+                <button onClick={this.removeAll}>BOOM</button>
+                <Option />
+            </div>
+        );
+    }
+}
 
 
 
+class AddOption extends React.Component {
+    handleAddOption(e) {
+        e.preventDefault();
 
+        const option = e.target.elements.option.value.trim();
+
+        if (option) {
+            alert(option)
+        }
+    }
+    
+    render() {
+        return (
+            <div>
+                <form onSubmit={this.handleAddOption}>
+                    <input type="text" name="option" />
+                    <button>Add Option </button>
+                </form>
+            </div>
+        );
+    }
+}
+
+
+class Option extends React.Component {
+    render() {
+        return (
+            <div>
+                {this.props.optionText}
+            </div>
+        );
+    }
+}
+
+ReactDOM.render(<IndecisionApp />, document.getElementById('app'));
