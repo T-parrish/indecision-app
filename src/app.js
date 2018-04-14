@@ -1,11 +1,8 @@
-// import './utils.js'
-// how to import stuff from other files
-import {square, add, canDrink, isAdult} from './utils.js'
+import React from 'react';
+import ReactDOM from 'react-dom';
 
+import IndecisionApp from './components/IndecisionApp.js'
 
-console.log('app.js is running')
+console.log('app.js is running');
 
-console.log(square(3))
-console.log(add(3, 4))
-console.log(isAdult(12))
-console.log(canDrink(22))
+ReactDOM.render(<IndecisionApp />, document.getElementById('app'));
