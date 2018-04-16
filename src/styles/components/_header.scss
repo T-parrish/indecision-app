@@ -1,0 +1,24 @@
+.header {
+    background: $header-gradient;
+    margin-bottom: $l-size;
+    padding: $m-size 0;
+    color: white;
+    text-shadow: 2px 1.5px 2px $purp-shadow;
+}
+
+// BEM naming convention -> block element modifier
+.header__title {
+    font-size: $l-size;
+    margin: 0;
+    font-family: $highlight-font;
+    font-weight: 300;
+}
+
+.header__subtitle {
+    color: $light-purp;
+    font-size: $m-size;
+    font-family: $main-font;
+    letter-spacing: .75px;
+    font-weight: 500;
+    margin: 0;
+}

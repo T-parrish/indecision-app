@@ -1,0 +1,63 @@
+.big-button {
+    background-color: $main-purp;
+    position: relative;
+    color: white;
+    border: none;
+    width: 100%;
+    letter-spacing: 1px;
+    padding: 15px 60px;
+    margin-bottom: $xl-size;
+    border-radius: 15px;
+    box-shadow: 0px 6px $button-side;
+    font-weight: bold;
+
+}
+
+.big-button:disabled {
+    opacity: .5;
+}
+
+.big-button:hover:enabled {
+    box-shadow: 0px 5px $button-side;
+    top: 1px;
+    cursor: pointer;      
+}
+
+.big-button:active:enabled{
+    box-shadow: 0px 0px $button-side;
+    top: 6px;
+}
+
+.big-button:focus, .button:focus {
+    outline: 0;
+}
+
+.button {
+    position: relative;
+    background-color: $main-purp;
+    box-shadow: 0px 4px $button-side;
+    border: none;
+    color: white;
+    padding: $s-size;
+    font-weight: 500;
+}
+
+.button:hover {
+    box-shadow: 0px 3px $button-side;
+    top: 1px;
+}
+
+.button:active {
+    box-shadow: 0px 0px $button-side;
+    top: 4px;
+}
+
+.button--link {
+    background: none;
+    border: none;
+    color: white;
+}
+
+.button--link:focus {
+    outline: 0;
+}
