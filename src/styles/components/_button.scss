@@ -6,7 +6,7 @@
     width: 100%;
     letter-spacing: 1px;
     padding: 15px 60px;
-    margin-bottom: $xl-size;
+    margin-bottom: $l-size;
     border-radius: 15px;
     box-shadow: 0px 6px $button-side;
     font-weight: bold;
@@ -40,6 +40,8 @@
     color: white;
     padding: $s-size;
     font-weight: 500;
+    border-radius: 5px;
+    text-shadow: 0px 0px 1.5px darken($main-purp, 10%);
 }
 
 .button:hover {
@@ -56,6 +58,7 @@
     background: none;
     border: none;
     color: white;
+    text-shadow: 0px 0px 1.5px darken($widget-bg, 20%);
 }
 
 .button--link:focus {

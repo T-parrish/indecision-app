@@ -22,8 +22,24 @@
     border-bottom: 2px solid darken($widget-bg, 8%);
     color: black;
     padding: $s-size;
+    border-radius: 5px;
 }
 
 .add-option__text:focus {
     outline: 0;
+}
+
+@media(min-width:45rem) {
+    .add-option {
+        flex-direction: row;
+    }
+}
+
+@media(max-width:45rem) {
+    .add-option {
+        flex-direction: column;
+    }
+    .add-option__text {
+        margin: 0 0 $s-size 0;
+    }
 }

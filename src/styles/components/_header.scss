@@ -4,6 +4,8 @@
     padding: $m-size 0;
     color: white;
     text-shadow: 2px 1.5px 2px $purp-shadow;
+    // border-bottom: 1px solid lighten($main-purp, 20%);
+    box-shadow: 0px 0px 1.5px darken($main-purp, 10%);
 }
 
 // BEM naming convention -> block element modifier
@@ -15,7 +17,7 @@
 }
 
 .header__subtitle {
-    color: $light-purp;
+    color: white;
     font-size: $m-size;
     font-family: $main-font;
     letter-spacing: .75px;
